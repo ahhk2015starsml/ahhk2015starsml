@@ -1,6 +1,11 @@
+'use strict';
+
 var express = require('express');
 var cps = require('cps-api');
 var app = express();
+//var app = require('connect')();
+var http = require('http');
+var swaggerTools = require('swagger-tools');
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -9,32 +14,39 @@ app.get('/', function(request, response) {
   response.send('Hello World!');
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+//app.listen(app.get('port'), function() {
+//  console.log('Node app is running on port', app.get('port'));
+//});
+
+// swaggerRouter configuration
+var options = {
+  swaggerUi: '/swagger.json',
+  controllers: './controllers',
+  useStubs: process.env.NODE_ENV === 'development' ? true : false // Conditionally turn on stubs (mock mode)
+};
+// The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
+var swaggerDoc = require('./api/swagger.json');
+
+// Initialize the Swagger middleware
+swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
+  // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
+  app.use(middleware.swaggerMetadata());
+
+  // Validate Swagger requests
+  app.use(middleware.swaggerValidator());
+
+  // Route validated requests to appropriate controller
+  app.use(middleware.swaggerRouter(options));
+
+  // Serve the Swagger documents and Swagger UI
+  app.use(middleware.swaggerUi());
+
+  // Start the server
+  //http.createServer(app).listen(8080, function () {
+  //  console.log('Your server is listening on port %d (http://localhost:%d)', 8080, 8080);
+  //  console.log('Swagger-ui is available on http://localhost:%d/docs', 8080);
+  //});
+  app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+  });
 });
-
-
-// Creating a CPS connection
-var cpsConn = new cps.Connection('tcp://cloud-us-0.clusterpoint.com:9007', 'ahhk2015starsml', "username", "password", 'document', 'document/id', {account: 100586});
-
-// Debug
-cpsConn.debug = true;
-
-// Insert
-/*
-var id = 1;
-var name = "Username";
-var insert_request = new cps.InsertRequest('<document><id>'+id+'</id>'+cps.Term(name, "name")+'</document>');
-cpsConn.sendRequest(insert_request, function(err, insert_response) {
-  if (err)
-    return console.error(err);
-  console.log('New user registered: ' + insert_response.document.id);
-});
-*/
-var retrieve_req = new cps.RetrieveRequest('1');
-cpsConn.sendRequest(retrieve_req, function (err, retrieve_resp) {
-  if (err) return console.log(err);
-  if (retrieve_resp) {
-    console.log(retrieve_resp.results.document[0].id);
-  }
-}, 'json');

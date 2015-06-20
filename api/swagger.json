@@ -1,0 +1,243 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Angelhack Hong Kong 2015 Stars ML App",
+    "description": "This is a Stars ML API. Personalized horoscope preditions with big data.\n",
+    "version": "1.0.0"
+  },
+  "produces": ["application/json"],
+  "paths": {
+  
+  "/quiz": {
+    "get": {
+      "x-swagger-router-controller": "Quiz",
+      "tags": ["Quiz"],
+      "operationId": "postPersona",
+      "parameters": [
+        
+        {
+  "name" : "seed",
+  "in" : "query",
+  "description" : "seed",
+  "required" : true,
+  "type" : "integer"
+},
+        
+        {
+  "name" : "size",
+  "in" : "query",
+  "description" : "size",
+  "required" : true,
+  "type" : "integer"
+},
+        
+        {
+  "name" : "offset",
+  "in" : "query",
+  "description" : "offset",
+  "required" : false,
+  "type" : "integer"
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "successful operation",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/PersonalityQuizEntry"
+    }
+  }
+}
+        
+        
+      }
+    }
+  } 
+  
+   ,
+  
+  "/horoscope": {
+    "get": {
+      "x-swagger-router-controller": "Horoscope",
+      "tags": ["Horoscope"],
+      "operationId": "getHoroscope",
+      "parameters": [
+        
+        {
+  "name" : "personaId",
+  "in" : "query",
+  "description" : "personaId",
+  "required" : true,
+  "type" : "string"
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "successful operation",
+  "schema" : {
+    "$ref" : "#/definitions/Horoscope"
+  }
+}
+        
+        
+      }
+    }
+  } 
+  
+   ,
+  
+  "/rate": {
+    "put": {
+      "x-swagger-router-controller": "Rate",
+      "tags": ["Rate"],
+      "operationId": "putRate",
+      "parameters": [
+        
+        {
+  "name" : "personalityId",
+  "in" : "query",
+  "description" : "personalityId",
+  "required" : true,
+  "type" : "string"
+},
+        
+        {
+  "name" : "horoscopeId",
+  "in" : "query",
+  "description" : "horoscopeId",
+  "required" : true,
+  "type" : "string"
+},
+        
+        {
+  "name" : "rating",
+  "in" : "query",
+  "description" : "rating",
+  "required" : true,
+  "type" : "integer"
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "successful operation"
+}
+        
+        
+      }
+    }
+  } 
+  
+   ,
+  
+  "/personality": {
+    "post": {
+      "x-swagger-router-controller": "Personality",
+      "tags": ["Personality"],
+      "operationId": "postPersonality",
+      "parameters": [
+        
+        {
+  "in" : "body",
+  "name" : "body",
+  "description" : "personality",
+  "required" : true,
+  "schema" : {
+    "$ref" : "#/definitions/Personality"
+  }
+}
+        
+      ],
+      "responses": {
+        
+        "200": {
+  "description" : "successful operation",
+  "schema" : {
+    "type" : "string"
+  }
+}
+        
+        
+      }
+    }
+  } 
+  
+   
+  }, "definitions": {
+  "PersonalityWeightings": {
+  "properties" : {
+    "mind" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "energy" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "tactics" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "identity" : {
+      "type" : "integer",
+      "format" : "int32"
+    }
+  }
+},"PersonalityQuizEntry": {
+  "properties" : {
+    "id" : {
+      "type" : "string"
+    },
+    "question" : {
+      "type" : "string"
+    },
+    "weights" : {
+      "$ref" : "#/definitions/PersonalityWeightings"
+    }
+  }
+},"Personality": {
+  "properties" : {
+    "birthday" : {
+      "type" : "string",
+      "format" : "date"
+    },
+    "weightings" : {
+      "$ref" : "#/definitions/PersonalityWeightings"
+    },
+    "locationLongitude" : {
+      "type" : "number"
+    },
+    "locationLatitude" : {
+      "type" : "number"
+    },
+    "social" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    }
+  }
+},"Horoscope": {
+  "properties" : {
+    "id" : {
+      "type" : "string"
+    },
+    "content" : {
+      "type" : "string"
+    },
+    "icon" : {
+      "type" : "string"
+    },
+    "mlScore" : {
+      "type" : "number"
+    }
+  }
+}
+  }
+}
