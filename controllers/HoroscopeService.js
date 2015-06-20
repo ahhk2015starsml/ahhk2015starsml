@@ -1,5 +1,7 @@
 'use strict';
 
+var maxNumHoroscopes = 24;
+
 exports.getHoroscope = function(personaId) {
 
   var examples = {};

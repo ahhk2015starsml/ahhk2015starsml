@@ -12,7 +12,7 @@
     "get": {
       "x-swagger-router-controller": "Quiz",
       "tags": ["Quiz"],
-      "operationId": "postPersona",
+      "operationId": "getQuiz",
       "parameters": [
         
         {
@@ -20,7 +20,8 @@
   "in" : "query",
   "description" : "seed",
   "required" : true,
-  "type" : "integer"
+  "type" : "integer",
+  "default" : "1"
 },
         
         {
@@ -28,7 +29,8 @@
   "in" : "query",
   "description" : "size",
   "required" : true,
-  "type" : "integer"
+  "type" : "integer",
+  "default" : "3"
 },
         
         {
@@ -36,7 +38,8 @@
   "in" : "query",
   "description" : "offset",
   "required" : false,
-  "type" : "integer"
+  "type" : "integer",
+  "default" : "0"
 }
         
       ],
@@ -67,11 +70,12 @@
       "parameters": [
         
         {
-  "name" : "personaId",
+  "name" : "personalityId",
   "in" : "query",
-  "description" : "personaId",
+  "description" : "personalityId",
   "required" : true,
-  "type" : "string"
+  "type" : "string",
+  "default" : "pId-0"
 }
         
       ],
@@ -103,7 +107,8 @@
   "in" : "query",
   "description" : "personalityId",
   "required" : true,
-  "type" : "string"
+  "type" : "string",
+  "default" : "pId-0"
 },
         
         {
@@ -111,7 +116,8 @@
   "in" : "query",
   "description" : "horoscopeId",
   "required" : true,
-  "type" : "string"
+  "type" : "string",
+  "default" : "hId=0"
 },
         
         {
@@ -119,7 +125,8 @@
   "in" : "query",
   "description" : "rating",
   "required" : true,
-  "type" : "integer"
+  "type" : "integer",
+  "default" : "0"
 }
         
       ],
@@ -177,6 +184,10 @@
       "format" : "int32"
     },
     "energy" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "nature" : {
       "type" : "integer",
       "format" : "int32"
     },
