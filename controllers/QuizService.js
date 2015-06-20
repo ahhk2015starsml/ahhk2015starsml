@@ -61,7 +61,7 @@ exports.getQuiz = function (seed, size, offset, callback) {
     for (var i = offset; i < offset + size; ++ i) {
         retrieveIds.push(shuffledIds[i % maxNumQuizes]);
     }
-    console.log("Retrieving ids: " + retrieveIds);
+    //console.log("Retrieving ids: " + retrieveIds);
 
     var retrieveReq = new cps.RetrieveRequest(retrieveIds);
     cpsConn.sendRequest(retrieveReq, function (err, retrieveResp) {
@@ -88,6 +88,8 @@ exports.getQuiz = function (seed, size, offset, callback) {
             }
             //console.log("Converting result: " + retVal);
             return callback(retVal);
+        } else {
+            return callback([]);
         }
     }, 'json');
 }

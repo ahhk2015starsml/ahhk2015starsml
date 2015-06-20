@@ -44,9 +44,9 @@ exports.postPersonality = function (body, callback) {
     cpsConn.sendRequest(insertRequest, function (err, insertResponse) {
         if (err) {
             console.error(err);
-            callback(null);
+            return callback(null);
         }
         console.log("Posting Personality: " + JSON.stringify(insertResponse));
-        callback(myId);
+        return callback(myId);
     });
 }
