@@ -1,6 +1,6 @@
 'use strict';
 
-exports.postPersona = function(seed, size, offset) {
+exports.getQuiz = function(seed, size, offset) {
 
   var examples = {};
   
