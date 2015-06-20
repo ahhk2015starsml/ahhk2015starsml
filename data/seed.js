@@ -8,8 +8,8 @@ var cps = require('cps-api');
 var cpsConn = new cps.Connection(
     'tcp://cloud-us-0.clusterpoint.com:9007',
     'ahhk2015starsml',
-    process.env.CPS_USERNAME,
-    process.env.CPS_PASSWORD,
+    "ahhkuser", //process.env.CPS_USERNAME,
+    "ahhkpass", //process.env.CPS_PASSWORD,
     'document',
     'document/id',
     {account: 100586});
