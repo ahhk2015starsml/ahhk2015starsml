@@ -117,7 +117,7 @@
   "description" : "horoscopeId",
   "required" : true,
   "type" : "string",
-  "default" : "hId=0"
+  "default" : "hId-0"
 },
         
         {

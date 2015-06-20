@@ -19,13 +19,13 @@ exports.postPersonality = function (body, callback) {
     // should be generated 'manually'. Using timestamp, for example.
 
     // should be an upsert if using mongodb, instead this db is incomplete
-    var myId = body.birthday + ":"
+    var myId = "pId-" + new Date().getTime() + ":"
+        + body.birthday + ":"
         + body.weightings.mind + ""
         + body.weightings.energy + ""
         + body.weightings.nature  + ""
         + body.weightings.tactics + ""
-        + body.weightings.identity + ":"
-        + new Date().getTime();
+        + body.weightings.identity;
 
     var insertDoc = {
         "id": myId,
@@ -46,7 +46,7 @@ exports.postPersonality = function (body, callback) {
             console.error(err);
             return callback(null);
         }
-        console.log("Posting Personality: " + JSON.stringify(insertResponse));
+        //console.log("Posting Personality: " + JSON.stringify(insertResponse));
         return callback(myId);
     });
 }
