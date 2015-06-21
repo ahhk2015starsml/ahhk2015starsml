@@ -180,24 +180,29 @@
   "PersonalityWeightings": {
   "properties" : {
     "mind" : {
-      "type" : "integer",
-      "format" : "int32"
+      "type" : "number",
+      "format" : "double",
+      "example" : -1.9
     },
     "energy" : {
-      "type" : "integer",
-      "format" : "int32"
+      "type" : "number",
+      "format" : "double",
+      "example" : -0.5
     },
     "nature" : {
-      "type" : "integer",
-      "format" : "int32"
+      "type" : "number",
+      "format" : "double",
+      "example" : 1.5
     },
     "tactics" : {
-      "type" : "integer",
-      "format" : "int32"
+      "type" : "number",
+      "format" : "double",
+      "example" : 2.1
     },
     "identity" : {
-      "type" : "integer",
-      "format" : "int32"
+      "type" : "number",
+      "format" : "double",
+      "example" : -2.7
     }
   }
 },"PersonalityQuizEntry": {
@@ -216,7 +221,8 @@
   "properties" : {
     "birthday" : {
       "type" : "string",
-      "format" : "date"
+      "format" : "date",
+      "example" : "2015-06-21"
     },
     "weightings" : {
       "$ref" : "#/definitions/PersonalityWeightings"
@@ -240,9 +246,6 @@
       "type" : "string"
     },
     "content" : {
-      "type" : "string"
-    },
-    "icon" : {
       "type" : "string"
     },
     "mlScore" : {
