@@ -75,7 +75,7 @@
   "description" : "personalityId",
   "required" : true,
   "type" : "string",
-  "default" : "pId-0"
+  "default" : "pId-1434857047547:2015-06-21:-1.9-0.51.52.1-2.7"
 }
         
       ],
