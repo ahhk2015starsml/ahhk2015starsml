@@ -182,27 +182,32 @@
     "mind" : {
       "type" : "number",
       "format" : "double",
-      "example" : -1.9
+      "example" : -1.9,
+      "description" : "has to be between -3.0 to +3.0"
     },
     "energy" : {
       "type" : "number",
       "format" : "double",
-      "example" : -0.5
+      "example" : -0.5,
+      "description" : "has to be between -3.0 to +3.0"
     },
     "nature" : {
       "type" : "number",
       "format" : "double",
-      "example" : 1.5
+      "example" : 1.5,
+      "description" : "has to be between -3.0 to +3.0"
     },
     "tactics" : {
       "type" : "number",
       "format" : "double",
-      "example" : 2.1
+      "example" : 2.1,
+      "description" : "has to be between -3.0 to +3.0"
     },
     "identity" : {
       "type" : "number",
       "format" : "double",
-      "example" : -2.7
+      "example" : -2.7,
+      "description" : "has to be between -3.0 to +3.0"
     }
   }
 },"PersonalityQuizEntry": {
